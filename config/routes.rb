@@ -6,8 +6,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :people, only: [:index, :create, :show, :destroy]
-      resources :movie, only: [:index, :create, :show, :destroy]
+      resources :people, only: [:index, :create, :update, :show, :destroy]
+      resources :movies, only: [:index, :create, :update, :show, :destroy] do
+        post "add_actor", on: :member
+        delete "remove_actor", on: :member
+
+        post "add_director", on: :member
+        delete "remove_director", on: :member
+
+        post "add_producer", on: :member
+        delete "remove_producer", on: :member
+      end
     end
   end
 end
