@@ -1,24 +1,67 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Used GEMS
+  * Devise_token_auth for authentication.
+  * fast_json_api for serialization
+  * RSpec for testing
 
-Things you may want to cover:
+* Making authenticated requests
 
-* Ruby version
+  To make authenticated requests, first we need to get the auth tokens doing a post request to: /auth/sign_in
+  including in the payload the email and the password.
+  The response header of this request, if succeeded, will contain the auth headers needed for the following requests.
+  The headers needed for the following authenticated requests are: 'access-token', 'expiry', 'token-type', 'uid', 'client'
 
-* System dependencies
+* API endpoint
 
-* Configuration
+  POST /auth/sign_in // Authenticate user.
 
-* Database creation
+  GET	/auth/validate_token // Check validity of current tokens
 
-* Database initialization
+  GET	/api/v1/people // Get complete list of people
 
-* How to run the test suite
+  GET	/api/v1/people/:id // Show person
 
-* Services (job queues, cache servers, search engines, etc.)
+  GET	/api/v1/movie // Get complete list of movies
 
-* Deployment instructions
+  GET	/api/v1/movies/:id // Show movie
 
-* ...
+------------------ Authentication nedded ------------------
+
+- People
+
+  POST /api/v1/people // Create new person
+
+  PATCH	/api/v1/people/:id // Update person information
+
+  PUT	/api/v1/people/:id // Update person information
+
+  DELETE /api/v1/people/:id // Destroy person
+
+- Movies
+
+  POST /api/v1/movies // Create movie
+
+  PATCH	/api/v1/movies/:id // Update movie
+
+  PUT	/api/v1/movies/:id // Update movie
+
+  DELETE	/api/v1/movies/:id // Destroy movie
+
+  * Must include :person_id as a param in the payload
+
+    POST /api/v1/movies/:id/add_actor // Add actor to movie
+
+    DELETE /api/v1/movies/:id/remove_actor // Remove actor from movie
+
+    POST /api/v1/movies/:id/add_director // Add director to movie
+
+    DELETE	/api/v1/movies/:id/remove_director // Remove director from movie
+
+    POST	/api/v1/movies/:id/add_producer // Add producer to movie
+
+    DELETE /api/v1/movies/:id/remove_producer // Remove producer from movie
+
+* Running specs
+
+  `bundle exec rspec`
