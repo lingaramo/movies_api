@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_132015) do
+ActiveRecord::Schema.define(version: 2018_11_22_133623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "casting", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id", "person_id"], name: "index_casting_on_movie_id_and_person_id"
+    t.index ["person_id", "movie_id"], name: "index_casting_on_person_id_and_movie_id"
+  end
+
+  create_table "directors", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id", "person_id"], name: "index_directors_on_movie_id_and_person_id"
+    t.index ["person_id", "movie_id"], name: "index_directors_on_person_id_and_movie_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title", null: false
@@ -28,6 +42,13 @@ ActiveRecord::Schema.define(version: 2018_11_22_132015) do
     t.string "alias", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "producers", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "movie_id", null: false
+    t.index ["movie_id", "person_id"], name: "index_producers_on_movie_id_and_person_id"
+    t.index ["person_id", "movie_id"], name: "index_producers_on_person_id_and_movie_id"
   end
 
 end
