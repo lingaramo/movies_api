@@ -65,3 +65,7 @@
 * Running specs
 
   `bundle exec rspec`
+
+* Deployed to Heroku
+
+  https://evening-garden-96135.herokuapp.com/
