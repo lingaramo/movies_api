@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 2018_11_22_133623) do
     t.bigint "person_id", null: false
     t.bigint "movie_id", null: false
     t.index ["movie_id", "person_id"], name: "index_casting_on_movie_id_and_person_id"
-    t.index ["person_id", "movie_id"], name: "index_casting_on_person_id_and_movie_id"
+    t.index ["person_id", "movie_id"], name: "index_casting_on_person_id_and_movie_id", unique: true
   end
 
   create_table "directors", id: false, force: :cascade do |t|
     t.bigint "person_id", null: false
     t.bigint "movie_id", null: false
     t.index ["movie_id", "person_id"], name: "index_directors_on_movie_id_and_person_id"
-    t.index ["person_id", "movie_id"], name: "index_directors_on_person_id_and_movie_id"
+    t.index ["person_id", "movie_id"], name: "index_directors_on_person_id_and_movie_id", unique: true
   end
 
   create_table "movies", force: :cascade do |t|
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_133623) do
     t.bigint "person_id", null: false
     t.bigint "movie_id", null: false
     t.index ["movie_id", "person_id"], name: "index_producers_on_movie_id_and_person_id"
-    t.index ["person_id", "movie_id"], name: "index_producers_on_person_id_and_movie_id"
+    t.index ["person_id", "movie_id"], name: "index_producers_on_person_id_and_movie_id", unique: true
   end
 
 end
