@@ -1,4 +1,6 @@
 class Api::V1::MovieController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+
   def index
     movies = MovieSerializer.new(Movie.all).serialized_json
     render json: movies

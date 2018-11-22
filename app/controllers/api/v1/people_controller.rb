@@ -1,4 +1,6 @@
 class Api::V1::PeopleController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  
   def index
     people = PersonSerializer.new(Person.all).serialized_json
     render json: people

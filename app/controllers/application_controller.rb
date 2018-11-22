@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include DeviseTokenAuth::Concerns::SetUserByToken
   include ApiErrorResponder
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
