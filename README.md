@@ -69,3 +69,7 @@
 * Deployed to Heroku
 
   https://evening-garden-96135.herokuapp.com/
+
+  For authenticated requests use the admin user generated in the seed file.
+  
+  email: admin@admin.com, password: 12345678
